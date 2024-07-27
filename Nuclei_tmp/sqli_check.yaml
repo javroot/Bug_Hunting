@@ -1,0 +1,23 @@
+id: sqli-check
+
+info:
+  name: SQL Injection Check
+  author: javroot
+  severity: high
+  description: |
+    This template tests for a simple SQL Injection vulnerability by injecting a common payload and
+    checking for database error messages.
+  tags: sqli, vulnerability
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/vulnerable/page?id=1' OR '1'='1"
+    matchers:
+      - type: word
+        words:
+          - "SQL syntax"
+          - "database error"
+        condition: or
+        part: body
+

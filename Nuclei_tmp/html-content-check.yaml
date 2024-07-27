@@ -1,0 +1,21 @@
+id: html-content-check
+
+info:
+  name: HTML Content Check
+  author: javroot
+  severity: low
+  description: |
+    This template searches for a specific string in the HTML body to ensure the page loads correctly.
+  tags: html, content
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    matchers:
+      - type: word
+        words:
+          - "admin"
+        part: body
+
+
